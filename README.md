@@ -36,7 +36,8 @@ To set up the project locally, follow these steps:
 
 1. **Clone the repository**:
    git clone https://github.com/priyabsah/redback-chatbot.git
-cd redback-chatbot
+   
+   cd redback-chatbot
 
 
 2. **Install dependencies**:
