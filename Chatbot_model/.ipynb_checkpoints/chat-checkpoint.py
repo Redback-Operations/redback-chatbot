@@ -12,6 +12,8 @@
 #     name: python3
 # ---
 
+
+
 import pandas as pd
 import numpy as np
 import warnings
@@ -35,6 +37,18 @@ for dirname, _, filenames in os.walk('Mental_Health_FAQ.CSV'):
 # -
 
 import os
+for dirname, _, filenames in os.walk('20000-Uttrance.CSV'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+
+
+import os
+for dirname, _, filenames in os.walk('Bitext.CSV'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
+
+import os
 for dirname, _, filenames in os.walk('full_Chat_data.CSV'):
     for filename in filenames:
         print(os.path.join(dirname, filename))
@@ -46,14 +60,33 @@ nRow, nCol = data_mental.shape
 print(f'There are {nRow} rows and {nCol} columns')
 
 nRowsRead = None # specify 'None' if want to read whole file
+data_20000_Uttrance = pd.read_csv('20000-Uttrance.csv', delimiter=',', nrows = nRowsRead)
+data_20000_Uttrance.dataframeName = '20000-Uttrance.csv'
+nRow, nCol = data_20000_Uttrance.shape
+print(f'There are {nRow} rows and {nCol} columns')
+
+nRowsRead = None # specify 'None' if want to read whole file
+data_bitext = pd.read_csv('Bitext.csv', delimiter=',', nrows = nRowsRead)
+data_bitext.dataframeName = 'Bitext.csv'
+nRow, nCol = data_bitext.shape
+print(f'There are {nRow} rows and {nCol} columns')
+
+nRowsRead = None # specify 'None' if want to read whole file
 data_alz = pd.read_csv('full_Chat_data.csv', delimiter=',', nrows = nRowsRead)
 data_alz.dataframeName = 'full_Chat_data.csv'
 nRow, nCol = data_alz.shape
 print(f'There are {nRow} rows and {nCol} columns')
 
+# +
+#data = pd.concat([data_alz, data_mental,data_bitext,data_20000_Uttrance], ignore_index=True)
+# -
+
 data = pd.concat([data_alz, data_mental], ignore_index=True)
 
-
+import os
+for dirname, _, filenames in os.walk('train.CSV'):
+    for filename in filenames:
+        print(os.path.join(dirname, filename))
 
 # +
 # data = pd.concat([data_alz, data_mental], ignore_index=True)
@@ -64,6 +97,12 @@ data
 data.shape
 
 data['Questions'] = data['Questions'].str.lower()
+
+# +
+# data_alz['Questions'] = data_alz['Questions'].str.lower()
+# -
+
+data_mental
 
 data_alz.head()
 
@@ -132,42 +171,46 @@ X_train, X_test, y_train, y_test = train_test_split(data['Questions'], data['Int
 # #### old model
 
 # + jupyter={"outputs_hidden": true}
-# from sklearn.feature_extraction.text import TfidfVectorizer
-# from sklearn.svm import LinearSVC
-# from sklearn.metrics import classification_report
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.svm import LinearSVC
+from sklearn.metrics import classification_report
 
-# def vectorize_text(X_train, X_test):
-#     vectorizer = TfidfVectorizer()
-#     X_train_vec = vectorizer.fit_transform(X_train)
-#     X_test_vec = vectorizer.transform(X_test)
-#     return X_train_vec, X_test_vec, vectorizer
+def vectorize_text(X_train, X_test):
+    vectorizer = TfidfVectorizer()
+    X_train_vec = vectorizer.fit_transform(X_train)
+    X_test_vec = vectorizer.transform(X_test)
+    return X_train_vec, X_test_vec, vectorizer
 
-# def train_model(X_train_vec, y_train):
-#     model = LinearSVC()
-#     model.fit(X_train_vec, y_train)
-#     return model
+def train_model(X_train_vec, y_train):
+    model = LinearSVC()
+    model.fit(X_train_vec, y_train)
+    return model
 
-# def evaluate_model(model, X_test_vec, y_test):
-#     y_pred = model.predict(X_test_vec)
-#     report = classification_report(y_test, y_pred)
-#     return report, y_pred
+def evaluate_model(model, X_test_vec, y_test):
+    y_pred = model.predict(X_test_vec)
+    report = classification_report(y_test, y_pred)
+    return report, y_pred
 
-# # Vectorize the text data
-# X_train_vec, X_test_vec, vectorizer = vectorize_text(X_train, X_test)
+# Vectorize the text data
+X_train_vec, X_test_vec, vectorizer = vectorize_text(X_train, X_test)
 
-# # Train the model
-# model = train_model(X_train_vec, y_train)
+# Train the model
+model = train_model(X_train_vec, y_train)
 
-# # Evaluate the model
-# report, y_pred = evaluate_model(model, X_test_vec, y_test)
-# print(report)
+# Evaluate the model
+report, y_pred = evaluate_model(model, X_test_vec, y_test)
+print(report)
 
-# # Visualize model performance
-# metrics = ['precision', 'recall', 'f1-score', 'support']
-# scores = classification_report(y_test, y_pred, output_dict=True)['weighted avg']
+# Visualize model performance
+metrics = ['precision', 'recall', 'f1-score', 'support']
+scores = classification_report(y_test, y_pred, output_dict=True)['weighted avg']
 # -
 
-# #### New model 
+# ### new model
+
+
+
+# #### New model 2
 
 # +
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -263,6 +306,10 @@ model = train_model(X_train_vec, y_train, model_type='svm')
 report, y_pred = evaluate_model(model, X_test_vec, y_test)
 print(report)
 
+# -
+
+
+
 # +
 # Evaluate the model
 report, y_pred = evaluate_model(model, X_test_vec, y_test)
@@ -316,6 +363,10 @@ print("Recall:", weighted_avg_values[1])
 print("F1-score:", weighted_avg_values[2])
 print("Support:", weighted_avg_values[3])
 
+# -
+
+
+
 # +
 import numpy as np
 import matplotlib.pyplot as plt
@@ -352,6 +403,12 @@ ax.legend()
 plt.tight_layout()
 plt.show()
 
+# -
+
+
+
+
+
 # +
 exit_commands = ("quit", "pause", "exit", "goodbye", "bye", "later", "stop")
 
@@ -379,5 +436,8 @@ while True:
     
     print("Chatbot:", response)
 # -
+
+# 	Answers
+# 8	Just as there are different types of medications for physical illness, different treatment options are available for individuals with mental illness. Treatment works differently for different people. It is important to find what works best for you or your child.
 
 
