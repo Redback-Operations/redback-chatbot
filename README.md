@@ -41,7 +41,7 @@ This project aims to develop a dynamic chatbot that exceeds the capabilities of 
   - medquad.csv
 - **Chatbot_model/:** Directory containing the main chatbot implementation.
   - chat.py
-  **RAG/:** Directory containing the main Rag implementation.
+- **RAG/:** Directory containing the main Rag implementation.
   - build_rag.ipynb
 - **CODEOWNERS:** Defines the code owners for the repository.
 - **LICENSE:** License file for the project.
