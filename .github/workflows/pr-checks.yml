@@ -1,0 +1,67 @@
+name: Pull Request Checks
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Pull Request Checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Get changed files
+        id: changed_files
+        uses: trilom/file-changes-action@v1.2.3
+        with:
+          output: ' '
+
+      - name: Save and print changed files
+        run: |
+          echo "${{ steps.changed_files.outputs.files }}" > changed_files.txt
+          echo Changed files: ${{ steps.changed_files.outputs.files }}
+
+      - name: Check for PDF and Word files
+        run: |
+          echo "${{ steps.changed_files.outputs.files }}" | tr " " "\n" | if grep -q -e ".docx" -e ".pdf"; then
+            echo "This PR contains PDF or word (.docx) files, please remove them and try again."
+            exit 1
+          else
+            echo "This PR does not contain PDF or word (.docx) files."
+          fi
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install check dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install nbqa flake8 pylint bandit nbformat
+      
+      - name: Execute linting and security check on Python files
+        run: |
+          py_files=$(grep -E '\.py$' changed_files.txt || true)
+          if [ -n "$py_files" ]; then
+            flake8 $py_files
+            pylint $py_files --rcfile=ci_build/pylintrc
+            bandit -r $py_files
+          else
+            echo "No Python files to lint and check."
+          fi
+
+      - name: Execute linting and security check on Jupyter Notebooks
+        run: |
+          nb_files=$(grep -E '\.ipynb$' changed_files.txt || true)
+          if [ -n "$nb_files" ]; then
+            nbqa flake8 $nb_files
+            nbqa pylint $nb_files --rcfile=ci_build/pylintrc
+            nbqa bandit -r $nb_files
+          else
+            echo $nb_files
+            echo "No Jupyter Notebooks to lint."
+          fi
