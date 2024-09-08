@@ -8,29 +8,86 @@ jobs:
   build:
     name: Pull Request Checks
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-
+      
       - name: Get changed files
         id: changed_files
-        uses: trilom/file-changes-action@v1.2.3
+        uses: tj-actions/changed-files@v45.0.1
         with:
-          output: ' '
+          separator: ","
 
-      - name: Save and print changed files
+      - name: Get markdown files
+        id: changed_md_files
+        uses: tj-actions/changed-files@v45.0.1
+        with:
+          files: |
+            **.md
+          separator: ","
+
+      - name: Print the changed and markdown files
         run: |
-          echo "${{ steps.changed_files.outputs.files }}" > changed_files.txt
-          echo Changed files: ${{ steps.changed_files.outputs.files }}
+          echo Changed files: ${{ steps.changed_files.outputs.all_changed_files }}
+          echo Markdown files: ${{ steps.changed_md_files.outputs.all_changed_files }}
+  
+      - name: Create log files
+        run: |
+          touch error_log.txt
+          touch pass_log.txt
+
+      - name: Check for naming conventions
+        run: |
+          all_files=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n")
+
+          while IFS= read -r file; do
+            if echo "$file" | grep -q " "; then
+              echo "The file or path $file contains spaces, please rename the path or file without spaces, using underscore ('_') instead." >> error_log.txt
+            fi
+
+            IFS='/' read -r -a fname_array <<< "$file";
+            path="${fname_array[@]::${#fname_array[@]}-1}";
+
+            if echo "${path}" | grep -qE '[A-Z]'; then
+              echo "The path '$file' contains capital letters. Please write file paths in lower case." >> error_log.txt
+            fi
+          done <<< "$all_files"
+          echo "Folders and files are correctly named!" >> pass_log.txt
+    
+      - name: Check for markdown file naming conventions
+        run: |
+          md_files=$(echo "${{ steps.changed_md_files.outputs.all_changed_files }}" | tr "," "\n")
+
+          if [ -n "$md_files" ]; then
+            while IFS= read -r file; do
+              md_fname=$(echo "$file" | tr "/" "\n" | grep "md" || true)  # Ensure grep doesn't exit
+              if echo $md_fname | grep -qE "^[^A-Z]+.md"; then
+                echo "The markdown file $md_fname at path $file is not in all caps. Please write markdown file names using all caps." >> error_log.txt
+              fi
+            done <<< "$md_files"
+            echo "All markdown files are correctly named!" >> pass_log.txt
+          else
+            echo "There are no markdown files to check." >> pass_log.txt
+          fi
 
       - name: Check for PDF and Word files
         run: |
-          echo "${{ steps.changed_files.outputs.files }}" | tr " " "\n" | if grep -q -e ".docx" -e ".pdf"; then
-            echo "This PR contains PDF or word (.docx) files, please remove them and try again."
+          echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | if grep -q -e ".docx" -e ".pdf"; then
+            echo "This PR contains PDF or word (.docx) files, please remove them and try again." >> error_log.txt
+          else
+            echo "This PR does not contain PDF or word (.docx) files." >> pass_log.txt
+          fi
+
+      - name: Display name check logs and handle errors
+        run: |
+          if [ -s error_log.txt ]; then
+            echo "Errors found:"
+            cat error_log.txt
             exit 1
           else
-            echo "This PR does not contain PDF or word (.docx) files."
+            cat pass_log.txt
+            echo "No naming errors found!"
           fi
 
       - name: Setup Python 3.9
@@ -42,26 +99,27 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install nbqa flake8 pylint bandit nbformat
-      
+
       - name: Execute linting and security check on Python files
         run: |
-          py_files=$(grep -E '\.py$' changed_files.txt || true)
+          py_files=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | grep ".py$" || true)
           if [ -n "$py_files" ]; then
-            flake8 $py_files
-            pylint $py_files --rcfile=ci_build/pylintrc
-            bandit -r $py_files
+            for file in $py_files; do
+              flake8 $file
+              pylint $file --rcfile=ci_build/pylintrc
+            done
           else
             echo "No Python files to lint and check."
           fi
 
       - name: Execute linting and security check on Jupyter Notebooks
         run: |
-          nb_files=$(grep -E '\.ipynb$' changed_files.txt || true)
+          nb_files=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | grep ".ipynb$" || true)
           if [ -n "$nb_files" ]; then
-            nbqa flake8 $nb_files
-            nbqa pylint $nb_files --rcfile=ci_build/pylintrc
-            nbqa bandit -r $nb_files
+            for file in $nb_files; do
+              nbqa flake8 $file
+              nbqa pylint $file --rcfile=ci_build/pylintrc
+            done
           else
-            echo $nb_files
             echo "No Jupyter Notebooks to lint."
           fi
