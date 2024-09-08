@@ -34,7 +34,7 @@ The repository is divided into two parts, reflecting the two main components of 
 
 2. **RAG Implementation:**
    - Focuses on implementing Retrieval-Augmented Generation to enhance the chatbot’s contextual understanding.
-   - **RAG/**: Implementation of the RAG architecture
+   - **rag/**: Implementation of the RAG architecture
 
 Other key files include:
 - **CODEOWNERS**: Designates code ownership.
