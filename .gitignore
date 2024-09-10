@@ -1,0 +1,22 @@
+# Virtual environment Files and Directories
+.env
+.venv
+venv
+.env
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDE Files – VSCode and PyCharm
+.vscode
+.idea
+
+# macOS files
+.DS_Store
+
+# Windows files
+Thumbs.db
+Desktop.ini
+
+# Linux files
+*~
