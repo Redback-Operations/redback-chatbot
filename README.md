@@ -62,7 +62,7 @@ To set up the project locally, follow these steps:
    Open `poc_e2e.ipynb` from the Jupyter interface.
 
 3. **Follow Instructions in the Notebook:**
-   The notebook contains all the instructions needed to run the end-to-end process including environment set-up and installingg dependencies present in`rag/requirements.txt`.
+   The notebook contains all the instructions needed to run the end-to-end process including environment set-up and installing dependencies provided in `rag/requirements.txt`.
 
 ## Usage
 
