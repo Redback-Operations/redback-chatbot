@@ -80,7 +80,8 @@ RAG architecture is employed to enhance the chatbot’s ability to retrieve and 
 4. **Search and Retrieve**: Use the stored embeddings to perform searches. The results are initially ranked based on relevance and can be further refined using a ranking model.
 5. **Generate Responses**: Use the `ChatGroq` model to generate answers based on the retrieved context and user queries.
 
-
 ---
+
+This chatbot is part of the overall Redback Senior initiative, aimed at creating intelligent support systems for the elderly, ensuring their well-being, and providing them with reliable access to important information through wearable technology.
 
 Feel free to explore, contribute, and be part of this important initiative!
