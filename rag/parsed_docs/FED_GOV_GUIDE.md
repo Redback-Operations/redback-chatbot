@@ -4,9 +4,9 @@
 
 ##### A physical activity guide for older Australians
 
-**An initiative of the Australian Government in**
+###### An initiative of the Australian Government in
 
-**association with Sports Medicine Australia**
+ association with Sports Medicine Australia
 
 
 -----
@@ -41,35 +41,29 @@ Publication number P01001 – Choose Health: Be Active
 
 ## Is this booklet for me?
 
-This booklet is designed to help older Australians achieve sufficient physical
-activity for good health as they age. It is mainly for people who are not currently
-building 30 minutes of physical activity into their daily lives, and are looking for
 
-difference to your health and well-being.
+###### This booklet is designed to help older Australians achieve sufficient physical activity for good health as they age. It is mainly for people who are not currently building 30 minutes of physical activity into their daily lives, and are looking for
 
-advice about healthy eating.
+ difference to your health and well-being.
 
-lead to better health and well-being!
+ advice about healthy eating.
+
+ lead to better health and well-being!
 
 
-ways they can do so. (Recent surveys show about half of all older Australians are
-not doing at least 30 minutes of physical activity a day).
+###### ways they can do so. (Recent surveys show about half of all older Australians are not doing at least 30 minutes of physical activity a day).
 
-This booklet shows how easy it can be to stay fit and healthy as you get older.
-Strategies may need to be different depending on your individual lifestyle, but
-physical activity is achievable and even a slight increase in activity can make a
+ This booklet shows how easy it can be to stay fit and healthy as you get older. Strategies may need to be different depending on your individual lifestyle, but physical activity is achievable and even a slight increase in activity can make a
 
-Having health problems doesn’t mean you can’t be physically active. Any increase
-in activity can be beneficial for physical and mental health. To assist, this booklet
-includes specific information on exercising with chronic illness and has some
+ Having health problems doesn’t mean you can’t be physically active. Any increase in activity can be beneficial for physical and mental health. To assist, this booklet includes specific information on exercising with chronic illness and has some
 
-_Choose Health through physical activity. Go_
-for it, you will be surprised how small changes in your physical activity levels can
+ Choose Health through physical activity. Go for it, you will be surprised how small changes in your physical activity levels can
 
 
 -----
 
 #### Contents
+
 
 Is this booklet for me? ...................................................................................................................1
 
@@ -89,7 +83,7 @@ Why is physical activity important? ............................................
 
 Physical Activity Recommendations for Older Australians ...........................................5
 
-...............6
+I can’t be more active because … Excuses and how to overcome them ...............6
 
 What sort of physical activity should I be doing? .............................................................8
 
@@ -113,7 +107,7 @@ TV exercises ...................................................................
 
 Stretching and balance exercises ..........................................................................................21
 
-................................................................................22
+Balancing activity with healthy eating ................................................................................22
 
 Feedback ..........................................................................................................................................26
 
@@ -127,8 +121,7 @@ Useful contacts ................................................................
 #### Why is physical activity important? for Older Australians
 
 
-It makes you look and
-feel better
+###### It makes you look and  feel better
 
 �����������������������
 
@@ -143,14 +136,14 @@ make friends
 
 �����������������
 
-It is good for your mind
+###### It is good for your mind
 
 ����������������������������
 
 ������������������������
 
 
-It is good for your body
+###### It is good for your body
 
 �������������������
 
@@ -176,21 +169,6 @@ It is good for your body
 ����������������������
 
 
-**“No matter what your age, weight, health problems or abilities,**
-**you should try and do some form of physical activity.”**
-
-How much activity?
-
-����������������������������������
-at least 30 minutes of moderate
-intensity physical activity on
-most, preferably all, days.
-
-�������������������������������
-your heart, lungs, muscles and
-bones in good working order.
-
-
 �����������������������������������
 start with 10 minutes once or
 twice a day. After two weeks,
@@ -202,7 +180,7 @@ goal of 30 minutes a day.
 minutes each day there will be
 additional benefits.
 
-What type of exercise?
+###### What type of exercise?
 
 ���������������������������������
 as many ways as possible,
@@ -217,6 +195,22 @@ flexibility and balance (see pages
 the clock but you
 
 can wind it up."
+
+
+**“No matter what your age, weight, health problems or abilities,**
+**you should try and do some form of physical activity.”**
+
+###### How much activity?
+
+����������������������������������
+at least 30 minutes of moderate
+intensity physical activity on
+most, preferably all, days.
+
+�������������������������������
+your heart, lungs, muscles and
+bones in good working order.
+
 
 ������������������������������
 moderate intensity activity. This
@@ -253,12 +247,15 @@ certainly add life to your years.”
 
 #### I can t be more active because…
 
+
 ###### Excuses . . . . . . . . . . . . . . . . . and how to overcome them
 
 ����������������������� Make it a priority, make time. Get into a routine. Take every chance you can
 
 to be active, even if it’s only for a few minutes – do exercises while waiting
 for the kettle to boil or while watching TV (see pages 19–20).
+
+��������������� Once you get started, you will have more energy and feel less tired.
 
 ������������������������� Most health problems can be helped by activity. Talk to your doctor – they
 and exercise might make may be able to write an ‘ activity prescrip tion’ for you (see pages 16–17 for
@@ -278,9 +275,15 @@ If it’s cold, wear gloves. If it’s raining, take an umbrella.
 
 ������������� You are never too old – there is always something you can do.
 
+������������������������������������ Be active around your home – do exercises at home (see pages 19–21).
+
 ������������������������ Walk to and from places (the shop, letterbox or a friend’s house).
 
 ���������������������������� You will wear out more quickly if you do nothing.
+
+��������������������������������� You don’t have to play sport to be active – try gardening, dancing,
+
+walking or exercise to music.
 
 
 �����������������������
@@ -341,7 +344,7 @@ I wish I had done it earlier”
 **Four types of activity are needed to keep you healthy.** **Try to include at least one activity from each group.**
 
 
-Moderate fitness activities
+###### Moderate fitness activities
 
 These activities help to keep your heart, lungs and blood vessels ���������������� �����������������
 healthy. ���������������������� �����������������������
@@ -360,7 +363,7 @@ most days. This can be in three lots of 10 minutes or two lots of
 
 ������������������ �����������������������
 
-Strength activities
+###### Strength activities
 
 These activities help your muscles and bones stay strong and make ��Weight, strength or resistance training exercises
 it easier for you to do daily tasks as you get older. ��Lifting and carrying (eg groceries or small children)
@@ -375,7 +378,7 @@ week, and build some of them into your everyday activities.
 
 ��Calisthenics (eg push ups and sit ups)
 
-Flexibility activities
+###### Flexibility activities
 
 These activities help you to move more easily. They include gentle ���������� ������
 reaching, bending and stretching. If you stay flexible you will ����������������������������� ���������
@@ -389,7 +392,7 @@ Try to do some form of stretching every day – even if it is only while
 
 you are watching TV (see pages 20–21).
 
-Balancing activities
+###### Balancing activities
 
 These activities will improve your balance and help to prevent falls. For ideas see pages 19 and 21
 Make a specific time each day to do these exercises, or fit them in
@@ -400,6 +403,12 @@ whenever you can – for example – while waiting for the kettle to boil
 -----
 
 #### Getting started – making a plan
+
+
+**Use the table on page 14**
+
+
+**Set some goals – How about**
 
 
 If you are starting an activity
@@ -442,12 +451,6 @@ routine. Make a set time to be
 active every day.
 
 _My activity time will be:_
-
-
-**Set some goals – How about**
-
-
-**Use the table on page 14**
 
 
 **to make an activity plan,**
@@ -505,7 +508,7 @@ into for years.”
 #### Making it easier Overcoming setbacks
 
 
-Use reminders
+###### Use reminders
 
 ����������������������������
 home (eg on the front door
@@ -515,7 +518,7 @@ remind you to do some activity.
 ��������������������������������
 the door or in the car.
 
-Get into a routine
+###### Get into a routine
 
 ��������������������������������
 time and the place.
@@ -524,7 +527,7 @@ time and the place.
 physical activity in your diary
 or on your calendar.
 
-Be social
+###### Be social
 
 �������������������������������
 neighbour or relative in your
@@ -533,7 +536,7 @@ keep you both motivated and
 committed.
 
 
-Use a diary
+###### Use a diary
 
 ���������������������������������
 and how you feel after doing
@@ -548,14 +551,14 @@ even use stickers or gold stars
 to mark off each time you are
 active.
 
-Choose a role model
+###### Choose a role model
 
 �����������������������������
 is regularly active and fit. Talk
 to them and use them as a role
 model to keep yourself going.
 
-Vary your activity
+###### Vary your activity
 
 �������������������������������
 time or the place you normally
@@ -576,7 +579,7 @@ you some other ideas.
 
 **setback as temporary and to get back on track as soon as you can.**
 
-Common setbacks . . . and how to overcome them
+###### Common setbacks . . . and how to overcome them
 
 Coming back after Take it easy when you begin again, do small
 injury or illness? amounts of activity until you feel better,
@@ -614,6 +617,7 @@ f d h d f i d ”
 -----
 
 #### Choose Health Monthly Activity Planner
+
 
 1. Plan what you will do. 2 . Photocopy the page for future use. 3. Put a tick in the box each day you do that activity for the next 4 weeks.
 
@@ -673,6 +677,19 @@ Sitting less
 #### Coping with chronic health problems
 
 
+**_Osteoporosis_**
+
+stronger.
+
+**_Foot problems_**
+
+that can help.
+
+for you.
+
+**_Mobility problems_**
+
+
 Most health problems can
 actually be helped by activity –
 but check with your doctor, nurse,
@@ -685,25 +702,8 @@ don’t push yourself too hard. Be
 kind to yourself – but be active in
 as many ways as you can.
 
-“Most of us don’t feel the impact of
 
-ill-health until something dramatic
-
-happens – like a heart attack or
-
-diabetes. If we had known we were
-
-going to live this long we would have
-
-taken more care of ourselves.
-
-We didn’t care a tinker’s curse when
-
-bullet proof.”
-
-
-Suggested activities for different
-health problems
+###### Suggested activities for different health problems
 
 **_Heart problems and/or diabetes_**
 ����������������������������������
@@ -726,23 +726,27 @@ is no program near where you
 live, try swimming in a warm pool.
 
 
-**_Osteoporosis_**
+“Most of us don’t feel the impact of
 
-stronger.
+ill-health until something dramatic
 
-**_Foot problems_**
+happens – like a heart attack or
 
-that can help.
+diabetes. If we had known we were
 
-for you.
+going to live this long we would have
 
-**_Mobility problems_**
+taken more care of ourselves.
+
+We didn’t care a tinker’s curse when
+
+bullet proof.”
 
 
 Weight bearing activity and strength
 training can help to make bones
 
-**_ok' knees and back_**
+**_'Cro ok' knees and back_**
 Talk to your physiotherapist about
 strengthening exercises.
 
@@ -771,14 +775,14 @@ to help work out what is best for you.
 
 -----
 
-Drink enough water
+###### Drink enough water
 
 ����������������������������
 water before, during and after
 your activity (do not wait until
 you are thirsty).
 
-Set the right pace
+###### Set the right pace
 
 ������������������������������
 ������������������������������������
@@ -793,7 +797,7 @@ down or stop!
 
 #### Making sure your activities are safe Kettle exercises
 
-Start slowly Increase gradually **We have called the exercises on this page kettle exercises because they can be**
+###### Start slowly Increase gradually We have called the exercises on this page kettle exercises because they can be
 
 ������������������������������ �������������������������������� **done while you are waiting for the kettle to boil or even while talking on the**
 body time to warm up. activity or are starting a new **telephone. All you need is a stable piece of furniture about the height of a kitchen**
@@ -818,7 +822,7 @@ problem, you may need to
 
 left side. Keep your back and both legs straight. Hold the
 
-Wear comfortable clothes discuss starting again with
+###### Wear comfortable clothes discuss starting again with
 
 position for one second then slowly lower. Repeat 8 times at
 
@@ -835,7 +839,7 @@ more enjoyable. Half squats (improves leg strength)
 
 Stand facing the bench with your feet apart (about shoulder
 
-Drink enough water
+###### Drink enough water
 
 width), feet facing forward and holding on with both hands.
 
@@ -856,7 +860,7 @@ you are thirsty).
 squeeze your buttocks together as if there is a $5 note
 between them that you don’t want to drop. Repeat 8 times
 
-Set the right pace
+###### Set the right pace
 
 at first, increasing to 15.
 
@@ -872,9 +876,8 @@ The old saying ‘no pain, no gain’ is �������������
 
 not true. If you feel any pain slow your movements are not rushed.
 
-down or stop!
+down or stop! _As you progress, try these exercises holding on with one fingertip, then not holding at all._
 
-_As you progress, try these exercises holding on with one fingertip, then not holding at all._
 _If this is easy for you, try it with no hands and with your eyes closed._
 
 
@@ -888,7 +891,7 @@ _If this is easy for you, try it with no hands and with your eyes closed._
 
 back and stretch your legs out in front of you. Keep your
 
-Stand up and sit down (or chair raise) heels on the floor and stretch your ankles so that your
+###### Stand up and sit down (or chair raise)  heels on the floor and stretch your ankles so that your
 
 toes point towards the floor. If you don’t feel the stretch
 
@@ -903,7 +906,7 @@ position for 10-20 seconds. Repeat 3-5 times.
 apart. Try to keep your back and shoulders straight
 throughout this exercise. Slowly stand up, trying not to
 
-Hamstring stretch
+###### Hamstring stretch
 
 use your hands (or as little as possible). Slowly sit back
 
@@ -914,7 +917,7 @@ Sit on the lounge with your right leg up, toes pointing
 up as shown. Try to keep this leg straight. Keeping your
 back straight, lean forward until you feel a gentle stretch
 
-Shoulder roll (for flexibility)
+###### Shoulder roll (for flexibility)
 
 in the back of your right leg. Hold this position for 10-20
 
@@ -922,12 +925,12 @@ Using a gentle circular motion, hunch your shoulders seconds. Repeat 3- 5 times,
 upwards, backwards, downwards and forwards. stretch with your left leg.
 ����������������������������������������������������
 
-Stand on one foot
+###### Stand on one foot
 
 Stand next to the kitchen bench or the back of a chair
 – hold on if you need to. Lift your right leg and stand
 
-Knee lifts (for strength) for 10 seconds on your left leg. Repeat 5 times. If you
+###### Knee lifts (for strength) for 10 seconds on your left leg. Repeat 5 times. If you
 
 feel steady enough, do it without holding on. If you are
 
@@ -939,12 +942,12 @@ knee and lift your left leg towards your chest. Hold for a
 ����������������������������������������������������������
 each leg.
 
-Walk heel to toe
+###### Walk heel to toe
 
 Stand next to a support (the kitchen bench will do) and
 step forward by putting the heel of one foot directly in
 
-Heels up toes up (for flexibility)
+###### Heels up toes up (for flexibility)
 
 front of the toes of the other foot, so that they touch (or
 
@@ -959,23 +962,23 @@ movements for 30 seconds
 
 **are watching television.**
 
-Stand up and sit down (or chair raise)
+###### Stand up and sit down (or chair raise) 
 _(for strength and balance)_
 
 apart. Try to keep your back and shoulders straight
 
 ��������������������������������������
 
-Shoulder roll (for flexibility)
+###### Shoulder roll (for flexibility)
 
 upwards, backwards, downwards and forwards.
 ����������������������������������������������������
 
-Knee lifts (for strength)
+###### Knee lifts (for strength)
 
 each leg.
 
-Heels up toes up (for flexibility)
+###### Heels up toes up (for flexibility)
 
 Start with feet flat on the floor and lift heels as high
 
@@ -988,6 +991,7 @@ movements for 30 seconds
 
 #### Balancing activity with healthy eating
 
+
 **It is important to try to balance the energy being used for physical**
 **activity with energy going into your body (as food and drink). This will**
 **help you to maintain a healthy weight and will help to keep your body**
@@ -998,19 +1002,10 @@ movements for 30 seconds
 **in older people.***
 
 
-**Eat plenty of vegetables and fruit**
-
-Five Six
-
-
-This means at least two serves of
-fruit and five serves of vegetables
-every day (a serve is equivalent to
-a handful). Sa lads and legumes
-(beans) count as vegetables.
-
-
 **Eat plenty of cereals, breads**
+
+###### Five Six
+
 **and pasta**
 
 These foods are good sources
@@ -1020,7 +1015,7 @@ like iron and zinc. Wholegrain
 breads have more fibre, vitamins
 and minerals.
 
-Seven
+###### Seven
 
 **Include foods that are high**
 **in calcium**
@@ -1036,7 +1031,16 @@ Choose low fat or calcium
 enriched skim milk products.
 
 
-One
+**Eat plenty of vegetables and fruit**
+
+This means at least two serves of
+fruit and five serves of vegetables
+every day (a serve is equivalent to
+a handful). Sa lads and legumes
+(beans) count as vegetables.
+
+
+###### One
 
 **Enjoy a wide variety of**
 **nutritious foods**
@@ -1051,7 +1055,7 @@ noodles
 ������������������������
 ��meat, fish, poultry, eggs, nuts
 
-Two
+###### Two
 
 **Keep active to maintain muscle**
 **strength and a healthy body**
@@ -1061,7 +1065,7 @@ Increase all activities and decrease
 sitting for long periods.
 
 
-Three
+###### Three
 
 **Eat at least three meals**
 **every day**
@@ -1077,7 +1081,7 @@ portions of left-overs when you
 do cook. If you eat out, try not to
 over do it with portions.
 
-Four
+###### Four
 
 **Care for your food: prepare and**
 **store it correctly**
@@ -1092,7 +1096,7 @@ been there too long!
 
 -----
 
-Eight
+###### Eight
 
 **Eat a diet which is low in**
 **saturated fat**
@@ -1110,29 +1114,8 @@ meat on sandwiches. Avoid lard
 and copha – they can be hidden
 in some biscuits and fast foods.
 
-|Read food labels to see what is healthy (this one is not healthy!)|Col2|
-|---|---|
-|Try to choose foods with less than 10g of saturated fat in every 100g of food||
-|Per serving (35g) Per 100g||
-|Energy 711 kJ 2030 kJ (170 Cals) (485 Cals)||
-|Protein 4.1 g 11.8 g||
-|Fat 7.8 g 22.3 g Saturated fat 5.5g 15.7g||
-|||
 
-
-|Fat 7.8 g 22.3 g Saturated fat 5.5g 15.7g Carbohydrate  total 20.6 g 59.0g sugars 0.9 g 2.5 g|Col2|
-|---|---|
-|$IETARY�FIBRE�� �G�� �G||
-|Sodium 228 mg 650 mg Potassium 95 mg 270 mg||
-|||
-
-
-
-_Low salt food contains less than 120mg sodium –_
-_per 100g of food_
-
-
-Nine
+###### Nine
 
 **Choose food low in salt and use**
 **salt sparingly**
@@ -1145,7 +1128,7 @@ to add salt to food. Try using
 herbs and spices to add flavour
 instead of salt.
 
-Ten
+###### Ten
 
 **Use added sugars in moderation**
 
@@ -1163,7 +1146,7 @@ Eating lots of high sugar food
 will cause tooth decay.
 
 
-Eleven
+###### Eleven
 
 **Drink adequate amounts of water**
 **and/or other fluids**
@@ -1200,7 +1183,7 @@ you have to go to the toilet during
 the night, and ask your doctor or
 
 
-Twelve
+###### Twelve
 
 **If you drink alcohol, limit**
 **your intake**
@@ -1212,7 +1195,6 @@ than two standard drinks per
 day) can be beneficial, but too
 much will damage your health.
 
-Examples of one standard drink
 
 As you age, your liver is less able
 to deal with alcohol. You will
@@ -1223,6 +1205,18 @@ Ask your doctor whether it is safe
 to drink alcohol if you are taking
 medications, and never ever
 drink and drive.
+
+|Read food labels to see what is healthy  (this one is not healthy!)|Col2|
+|---|---|
+|Try to choose foods with less than 10g of saturated fat in every 100g of food||
+|Per serving (35g) Per 100g||
+|Energy 711 kJ 2030 kJ (170 Cals) (485 Cals)||
+|Protein 4.1 g 11.8 g||
+|Fat 7.8 g 22.3 g Saturated fat 5.5g 15.7g||
+|||
+
+
+###### “Being active and good nutrition are vitally important for maintaining the best possible
 
 
 100ml small glass of
@@ -1236,9 +1230,23 @@ strength beer,
 ������������
 
 
-**“Being active and good nutrition**
-**are vitally important for**
-**maintaining the best possible**
+Examples of one standard drink
+
+
+_Per serving (35g)_ _Per 100g_
+Energy 711 kJ 2030 kJ
+(170 Cals) (485 Cals)
+Protein 4.1 g 11.8 g
+
+|Fat  7.8 g  22.3 g  Saturated fat  5.5g 15.7g Carbohydrate    total 20.6 g 59.0g  sugars  0.9 g  2.5 g|Col2|
+|---|---|
+|$IETARY�FIBRE�� �G�� �G||
+|Sodium 228 mg 650 mg Potassium 95 mg 270 mg||
+|||
+
+
+_Low salt food contains less than 120mg sodium –_
+_per 100g of food_
 
 
 -----
@@ -1312,19 +1320,19 @@ No stamp needed.
 
 -----
 
-���������������� ____________________________________________________________________
+###### ���������������� ____________________________________________________________________
 
-____________________________________________________________________________________
+ ____________________________________________________________________________________
 
-____________________________________________________________________________________
+ ____________________________________________________________________________________
 
-____________________________________________________________________________________
+ ____________________________________________________________________________________
 
-____________________________________________________________________________________
+ ____________________________________________________________________________________
 
-____________________________________________________________________________________
+ ____________________________________________________________________________________
 
-____________________________________________________________________________________
+ ____________________________________________________________________________________
 
 **Fold along this line FIRST**
 
@@ -1335,45 +1343,19 @@ ________________________________________________________________________________
 
 ### Useful Contacts
 
-Contact your local council to find out about facilities or services in your area that can help you
-to become more active. Below are phone numbers of State or Territory based organisations
-that may also be useful.
+###### Contact your local council to find out about facilities or services in your area that can help you to become more active. Below are phone numbers of State or Territory based organisations that may also be useful.
 
 
-NSW
-Department of Tourism,
-Sport and Recreation
-Ph : 131302
-ACT
-YMCA
-Ph: 02 6162 0991
-VIC
-Go for your life Infoline
-Ph: 1800 638 594
+###### NSW Department of Tourism, Sport and Recreation Ph : 131302 ACT YMCA Ph: 02 6162 0991 VIC Go for your life Infoline Ph: 1800 638 594
 
 
-TAS
-Sport and Recreation
-Tasmania
-Ph: 1800 252 476
-SA
-Active Ageing
-Ph: 08 8232 9077
-WA
-WA Department of Sport and
-Recreation
-Ph: 08 9492 9700
+###### TAS Sport and Recreation Tasmania Ph: 1800 252 476 SA Active Ageing Ph: 08 8232 9077 WA WA Department of Sport and Recreation Ph: 08 9492 9700
 
 
-NT
-Sport and Recreation NT
-Ph: 1800 045 678
-QLD
-Sport and Recreation QLD
-Ph: 07 3237 9832
+###### NT Sport and Recreation NT Ph: 1800 045 678 QLD Sport and Recreation QLD Ph: 07 3237 9832
 
 
-Want to know more about physical activity? Contact:
+###### Want to know more about physical activity? Contact:
 
 
 **Heart Health – the National Heart Foundation**
