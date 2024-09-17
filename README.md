@@ -48,12 +48,21 @@ To set up the project locally, follow these steps:
    ```bash
    git clone https://github.com/your-repo/redback-chatbot.git
    ```
-2. Install the required dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### Part 1: Model Development
 
-(Additional setup instructions to be added)
+(Additional usage instructions to be added)
+
+### Part 2: RAG Implementation
+
+2. **Run Jupyter Notebook:**
+   Launch Jupyter Notebook in the `rag/` directory:
+   ```bash
+   jupyter notebook
+   ```
+   Open `poc_e2e.ipynb` from the Jupyter interface.
+
+3. **Follow Instructions in the Notebook:**
+   The notebook contains all the instructions needed to run the end-to-end process including environment set-up and installingg dependencies present in`rag/requirements.txt`.
 
 ## Usage
 
@@ -63,11 +72,14 @@ To set up the project locally, follow these steps:
 
 ### Part 2: RAG Implementation
 
-RAG architecture is employed to enhance the chatbot’s ability to retrieve and generate contextually accurate responses. To run the RAG-enhanced chatbot:
+RAG architecture is employed to enhance the chatbot’s ability to retrieve and generate contextually accurate responses. 
 
-(Additional usage instructions to be added)
+1. **Convert PDF Files to Markdown**: Place your PDF files in the `docs` folder. The notebook will automatically convert them to Markdown format and save them in the `parsed_docs` folder.
+2. **Text Processing**: The notebook splits the converted Markdown files into smaller text chunks, which are then encoded into vector embeddings using the `SentenceTransformer` model.
+3. **Store Embeddings in Qdrant**: The text embeddings are stored in a Qdrant vector database, enabling efficient semantic search.
+4. **Search and Retrieve**: Use the stored embeddings to perform searches. The results are initially ranked based on relevance and can be further refined using a ranking model.
+5. **Generate Responses**: Use the `ChatGroq` model to generate answers based on the retrieved context and user queries.
 
-This chatbot is part of the overall Redback Senior initiative, aimed at creating intelligent support systems for the elderly, ensuring their well-being, and providing them with reliable access to important information through wearable technology.
 
 ---
 
