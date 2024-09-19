@@ -644,4 +644,3 @@ while True:
   decoded_response = decode(generated_response)
 
   print("Generated response:", decoded_response)
-
