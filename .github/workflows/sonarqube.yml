@@ -1,7 +1,7 @@
 name: Check quality gate result on pull request
 
 on:
-  pull_request:
+  push:
 
 jobs:
   test:
