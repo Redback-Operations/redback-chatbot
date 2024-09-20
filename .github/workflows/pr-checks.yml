@@ -36,6 +36,9 @@ jobs:
         run: |
           touch error_log.txt
           touch pass_log.txt
+          touch flake8_log.txt
+          touch pylint_log.txt
+
 
       - name: Check for naming conventions
         run: |
@@ -79,17 +82,6 @@ jobs:
             echo "This PR does not contain PDF or word (.docx) files." >> pass_log.txt
           fi
 
-      - name: Display name check logs and handle errors
-        run: |
-          if [ -s error_log.txt ]; then
-            echo "Errors found:"
-            cat error_log.txt
-            exit 1
-          else
-            cat pass_log.txt
-            echo "No naming errors found!"
-          fi
-
       - name: Setup Python 3.9
         uses: actions/setup-python@v5
         with:
@@ -100,26 +92,48 @@ jobs:
           python -m pip install --upgrade pip
           pip install nbqa flake8 pylint bandit nbformat
 
-      - name: Execute linting and security check on Python files
+      - name: Execute linting check on Python files
         run: |
           py_files=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | grep ".py$" || true)
           if [ -n "$py_files" ]; then
             for file in $py_files; do
-              flake8 $file
-              pylint $file --rcfile=ci_build/pylintrc
+              flake8 --config=ci_build/flake8 "$file" >> flake8_log.txt || true
+              pylint "$file" --rcfile=ci_build/pylintrc >> pylint_log.txt || true
             done
           else
             echo "No Python files to lint and check."
           fi
 
-      - name: Execute linting and security check on Jupyter Notebooks
+      - name: Execute linting check on Jupyter Notebooks
         run: |
           nb_files=$(echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | grep ".ipynb$" || true)
           if [ -n "$nb_files" ]; then
             for file in $nb_files; do
-              nbqa flake8 $file
-              nbqa pylint $file --rcfile=ci_build/pylintrc
+              nbqa flake8 --config=ci_build/flake8 "$file" >> flake8_log.txt || true
+              nbqa pylint "$file" --rcfile=ci_build/pylintrc >> pylint_log.txt || true
             done
           else
             echo "No Jupyter Notebooks to lint."
+          fi
+
+      - name: Display name check logs and handle errors
+        run: |
+          echo -e "\n-----------------------------------------\nNaming Conventions Check File:"
+          cat error_log.txt
+          
+          echo -e "\n-----------------------------------------\nFlake8 Linting Check File:"
+          cat flake8_log.txt
+          
+          echo -e "\n-----------------------------------------\nPylint Linting Check File:"
+          cat pylint_log.txt
+          
+          if [ -s error_log.txt ]; then
+            exit 1
+          elif [ -s flake8_log.txt ]; then
+            exit 1
+          elif [ -s pylint_log.txt ]; then
+            exit 1
+          else
+            cat pass_log.txt
+            echo "No naming errors found!"
           fi
