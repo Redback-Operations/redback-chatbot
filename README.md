@@ -1,73 +1,87 @@
-# redback-chatbot
+# Redback Chatbot Development Project
 
-# Chatbot Development Project
+Welcome to the **Redback Chatbot Development Project**, part of the larger **Redback Senior Project**. This project is dedicated to harnessing the potential of wearable technology to significantly enhance the quality of life for the elderly. By leveraging advanced data analytics, innovative web platforms, and sophisticated mobile app development tools, the Redback Senior Project aims to create a comprehensive support system for seniors.
 
-Welcome to the Chatbot Development Project!
+This repository specifically focuses on the development of an AI-powered chatbot that complements the wearable technology, providing personalised interactions across domains such as mental health, medical information, and natural language processing (NLP). The chatbot is split into two major parts:
 
-This repository contains the implementation of a chatbot designed to answer questions related to various topics, including mental health, medical information, and natural language processing (NLP). The chatbot utilizes machine learning and deep learning techniques to understand and respond to user queries effectively.
+1. **Model Development** – The core machine learning model, including natural language processing techniques and training datasets.
+2. **RAG Implementation** – Retrieval-Augmented Generation (RAG) for real-time data retrieval and contextual response generation from a curated knowledge base.
 
 ## Introduction
 
-This project aims to build an intelligent chatbot capable of understanding and responding to user queries with high accuracy. The chatbot leverages advanced tokenization and vector embedding techniques, as well as attention mechanisms, to improve its conversational capabilities.
+The goal of the Redback Chatbot is to develop an intelligent, adaptive chatbot that goes beyond traditional transformer models. By integrating **LLMs** and **RAG** architecture, the chatbot retrieves and generates responses from a specialised knowledge base to assist elderly users, enhancing their interactions with the Redback wearable technology.
 
 ## Features
 
-- **Advanced Tokenization**: Utilizes subword tokenization methods like Byte Pair Encoding (BPE) and WordPiece.
-- **Vector Embedding**: Implements word embedding techniques such as Word2Vec, GloVe, and fastText.
-- **Attention Mechanism**: Enhances the chatbot's ability to focus on relevant parts of the input data.
-- **Encoder-Decoder Architecture**: Uses sophisticated models for better context understanding and response generation.
-- **Iterative Improvement**: Continuously evaluates and refines the model for optimal performance.
+- **Advanced Tokenisation:** Utilises subword tokenisation (BPE, WordPiece) for more accurate text representation.
+- **Vector Embedding:** Leverages Word2Vec, GloVe, and fastText to generate meaningful semantic embeddings.
+- **Attention Mechanism:** Ensures focused, high-quality responses by attending to key parts of the input data.
+- **Iterative Refinement:** Constantly refines and optimises performance to meet the evolving needs of the elderly.
+- **RAG Architecture:** Combines document retrieval with generation models for contextually relevant, real-time responses.
+- **LLM Integration:** Allows for dynamic, personalised, and context-aware conversations.
 
-Repository Structure
-.ipynb_checkpoints/: Contains checkpoint files for the Jupyter notebook.
-Chatbot_datasets/: Directory containing various datasets used for training the chatbot.
-Medical_train.csv
-Mental_Health_FAQ.csv
-NLP_mental_health_Testing.csv
-concatenated_data.csv
-full_Chat_data.csv
-medquad.csv
-Chatbot_model/: Directory containing the main chatbot implementation.
-chat.py
-CODEOWNERS: Defines the code owners for the repository.
-LICENSE: License file for the project.
+## Project Structure
+
+The repository is divided into two parts, reflecting the two main components of the chatbot:
+
+1. **Model Development:**
+   - Core implementation of the chatbot’s machine learning model.
+   - Includes the training and integration of large language models.
+   - **Chatbot_datasets/**: Datasets used for training the model, including:
+     - `Medical_train.csv`, `Mental_Health_FAQ.csv`, etc.
+   - **Chatbot_model/**: Main implementation of the chatbot model.
+     - `chat.py`
+
+2. **RAG Implementation:**
+   - Focuses on implementing Retrieval-Augmented Generation to enhance the chatbot’s contextual understanding.
+   - **rag/**: Implementation of the RAG architecture
+
+Other key files include:
+- **CODEOWNERS**: Designates code ownership.
+- **LICENSE**: Licensing information.
+
+## Setup Instructions
 
 To set up the project locally, follow these steps:
 
-1. **Clone the repository**:
-   git clone https://github.com/priyabsah/redback-chatbot.git
-   
-   cd redback-chatbot
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/redback-chatbot.git
+   ```
+### Part 1: Model Development
 
+(Additional usage instructions to be added)
 
-2. **Install dependencies**:
-    pip install -r requirements.txt
+### Part 2: RAG Implementation
 
+2. **Run Jupyter Notebook:**
+   Launch Jupyter Notebook in the `rag/` directory:
+   ```bash
+   jupyter notebook
+   ```
+   Open `poc_e2e.ipynb` from the Jupyter interface.
 
-. **Download and prepare datasets**:
-    - Ensure you have the necessary datasets in the `Chatbot-dataset` directory.
-    - Preprocess the datasets by running:
-      ```bash
-      python preprocess_data.py
-      ```
+3. **Follow Instructions in the Notebook:**
+   The notebook contains all the instructions needed to run the end-to-end process including environment set-up and installing dependencies provided in `rag/requirements.txt`.
 
 ## Usage
 
-Training the Chatbot
-The chatbot is trained using various datasets containing questions and answers related to different domains. The training process involves the following steps:
+### Part 1: Model Development
 
-Data Preprocessing:
+(Additional usage instructions to be added)
 
-Remove duplicates, handle missing values, and standardize data formats.
-Tokenize and vectorize the text data using techniques like TF-IDF.
-Model Training:
+### Part 2: RAG Implementation
 
-Implement a baseline model using LinearSVC.
-Explore and integrate advanced algorithms and techniques, such as deep learning models and attention mechanisms.
-Evaluation and Iteration:
+RAG architecture is employed to enhance the chatbot’s ability to retrieve and generate contextually accurate responses. 
 
-Evaluate the model's performance using metrics like precision, recall, and F1-score.
-Iterate and refine the model based on evaluation results.
-Running the Chatbot
-To run the chatbot, execute the following command:
-python Chatbot_model/chat.py
+1. **Convert PDF Files to Markdown**: Place your PDF files in the `docs` folder. The notebook will automatically convert them to Markdown format and save them in the `parsed_docs` folder.
+2. **Text Processing**: The notebook splits the converted Markdown files into smaller text chunks, which are then encoded into vector embeddings using the `SentenceTransformer` model.
+3. **Store Embeddings in Qdrant**: The text embeddings are stored in a Qdrant vector database, enabling efficient semantic search.
+4. **Search and Retrieve**: Use the stored embeddings to perform searches. The results are initially ranked based on relevance and can be further refined using a ranking model.
+5. **Generate Responses**: Use the `ChatGroq` model to generate answers based on the retrieved context and user queries.
+
+---
+
+This chatbot is part of the overall Redback Senior initiative, aimed at creating intelligent support systems for the elderly, ensuring their well-being, and providing them with reliable access to important information through wearable technology.
+
+Feel free to explore, contribute, and be part of this important initiative!
