@@ -223,7 +223,8 @@ while True:
         encode(question), dtype=torch.long, device=device
     ).unsqueeze(0)
 
-    generated_response = m.generate(encoded_question, max_new_tokens=1000)[0].tolist()
+    generated_response = m.generate(encoded_question,
+                                     max_new_tokens=1000)[0].tolist()
 
     decoded_response = decode(generated_response)
 
