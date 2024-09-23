@@ -42,7 +42,7 @@ chars = sorted(list(set(text)))
 vocab_size = len(chars)
 
 stoi = {ch: i for i, ch in enumerate(chars)}
-itos = {i: ch for i, ch in enumerate(chars)}
+itos = {i: ch for i in enumerate(chars)}
 
 
 def encode(s):
@@ -88,7 +88,9 @@ class Head(nn.Module):
         self.key = nn.Linear(n_embd, head_size, bias=False)
         self.query = nn.Linear(n_embd, head_size, bias=False)
         self.value = nn.Linear(n_embd, head_size, bias=False)
-        self.register_buffer('tril', torch.tril(torch.ones(block_size, block_size)))
+        self.register_buffer(
+            'tril', torch.tril(torch.ones(block_size, block_size))
+        )
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, x):
@@ -156,7 +158,9 @@ class BigramLanguageModel(nn.Module):
         super().__init__()
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
         self.position_embedding_table = nn.Embedding(block_size, n_embd)
-        self.blocks = nn.Sequential(*[Block(n_embd, n_head=n_head) for _ in range(n_layer)])
+        self.blocks = nn.Sequential(
+            *[Block(n_embd, n_head=n_head) for _ in range(n_layer)]
+        )
         self.ln_f = nn.LayerNorm(n_embd)
         self.lm_head = nn.Linear(n_embd, vocab_size)
 
@@ -198,7 +202,8 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
 for iter in range(max_iters):
     if iter % eval_interval == 0 or iter == max_iters - 1:
         losses = estimate_loss()
-        print(f"step {iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+        print(f"step {iter}: train loss {losses['train']:.4f}, val loss "
+              f"{losses['val']:.4f}")
 
     xb, yb = get_batch('train')
     logits, loss = model(xb, yb)
@@ -214,7 +219,9 @@ while True:
     if question.lower() == 'quit':
         break
 
-    encoded_question = torch.tensor(encode(question), dtype=torch.long, device=device).unsqueeze(0)
+    encoded_question = torch.tensor(
+        encode(question), dtype=torch.long, device=device
+    ).unsqueeze(0)
 
     generated_response = m.generate(encoded_question, max_new_tokens=1000)[0].tolist()
 
