@@ -48,12 +48,19 @@ Usage
 Once the chatbot is trained and running, it can be integrated into a website or used for testing via a terminal or GUI interface. Users can interact with the chatbot by asking questions, and it will respond based on the training data, utilizing the attention mechanism for more accurate and contextually relevant answers.
 
 Project Structure
-
-├── chatbot-datasets/                   # Folder containing datasets
-├── src/                    # Source code for the chatbot
-│   ├── code_1.py    # Model training script
-│   ├── chat.py      # Script to run the chatbot
-├── README.md               # Project documentation
+│
+├── /models/
+│   └── language_model.py       
+│
+├── /utils/
+│   └── data_loader.py          
+│
+├── /training/
+│   └── train_model.py          
+│
+├── chatbot.py                  
+├── main.py                                
+└── README.md              # Project documentation
 
 Future Improvements
 Multilingual Support: Expanding the chatbot's capabilities to support multiple languages.
