@@ -6,17 +6,17 @@ from chatbot import chatbot_interaction
 
 
 # Hyperparameters
-batch_size = 4
-block_size = 16
-max_iters = 5000
-eval_interval = 100
-learning_rate = 1e-3
-device = 'cuda' if torch.cuda.is_available() else 'cpu'
-eval_iters = 200
-n_embd = 64
-n_head = 4
-n_layer = 4
-dropout = 0.0
+BATCH_SIZE = 4
+BLOCK_SIZE = 16
+MAX_ITERS = 5000
+EVAL_INTERVAL = 100
+LEARNING_RATE = 1e-3
+DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+EVAL_ITERS = 200
+N_EMBD = 64
+N_HEAD = 4
+N_LAYER = 4
+DROPOUT = 0.0
 
 
 def main():
@@ -51,16 +51,16 @@ def main():
 
     # Initialize the BigramLanguageModel
     model = BigramLanguageModel(
-        vocab_size, n_embd, block_size, n_layer, n_head, dropout
-    ).to(device)
+        vocab_size, N_EMBD, BLOCK_SIZE, N_LAYER, N_HEAD, DROPOUT
+    ).to(DEVICE)
 
     # Initialize the optimizer
-    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate)
+    optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 
     # Train the model
     train_model(
         model, train_data, val_data, optimizer,
-        max_iters, eval_interval, block_size, batch_size, eval_iters
+        MAX_ITERS, EVAL_INTERVAL, BLOCK_SIZE, BATCH_SIZE, EVAL_ITERS
     )
 
     # Save the trained model
@@ -73,9 +73,4 @@ def main():
 
 
 if __name__ == '__main__':
-    """
-    Entry point for the script.
-    When executed, this block calls the `main()` function to start the entire process:
-    from data loading and model training to starting the chatbot interaction if the user opts in.
-    """
     main()

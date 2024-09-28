@@ -11,20 +11,20 @@ def get_batch(split, data, block_size, batch_size):
     - batch_size (int): The number of examples in a single batch.
 
     Returns:
-    - x (Tensor): Input batch tensor of shape (batch_size, block_size), which contains the features.
-    - y (Tensor): Target batch tensor of shape (batch_size, block_size), which contains the labels (next token predictions).
+    - x_batch (Tensor): Input batch tensor of shape (batch_size, block_size), which contains the features.
+    - y_batch (Tensor): Target batch tensor of shape (batch_size, block_size), which contains the labels (next token predictions).
     
-    This function randomly selects starting points within the data and creates input-output pairs (x, y)
+    This function randomly selects starting points within the data and creates input-output pairs (x_batch, y_batch)
     for model training or evaluation.
     """
     ix = torch.randint(len(data) - block_size, (batch_size,))
-    x = torch.stack([data[i:i + block_size] for i in ix])
-    y = torch.stack([data[i + 1:i + block_size + 1] for i in ix])
-    return x, y
+    x_batch = torch.stack([data[i:i + block_size] for i in ix])
+    y_batch = torch.stack([data[i + 1:i + block_size + 1] for i in ix])
+    return x_batch, y_batch
 
 
 @torch.no_grad()
-def estimate_loss(model, train_data, val_data, eval_iters, block_size, batch_size):
+def estimate_loss(model, train_data, val_data, eval_iters, config):
     """
     Estimates the training and validation loss over a number of evaluation iterations.
 
@@ -33,8 +33,7 @@ def estimate_loss(model, train_data, val_data, eval_iters, block_size, batch_siz
     - train_data (Tensor): The training dataset.
     - val_data (Tensor): The validation dataset.
     - eval_iters (int): The number of evaluation iterations to perform.
-    - block_size (int): The sequence length (number of tokens) for each input example.
-    - batch_size (int): The number of examples in each evaluation batch.
+    - config (dict): A configuration dictionary containing `block_size` and `batch_size`.
 
     Returns:
     - out (dict): A dictionary containing the average loss for the 'train' and 'val' datasets.
@@ -48,16 +47,15 @@ def estimate_loss(model, train_data, val_data, eval_iters, block_size, batch_siz
     for split, data in [('train', train_data), ('val', val_data)]:
         losses = torch.zeros(eval_iters)
         for k in range(eval_iters):
-            X, Y = get_batch(split, data, block_size, batch_size)
-            _, loss = model(X, Y)
+            x_batch, y_batch = get_batch(split, data, config['block_size'], config['batch_size'])
+            _, loss = model(x_batch, y_batch)
             losses[k] = loss.item()
         out[split] = losses.mean()
     model.train()
     return out
 
 
-def train_model(model, train_data, val_data, optimizer, max_iterations,
-                eval_interval, block_size, batch_size, eval_iters):
+def train_model(model, train_data, val_data, optimizer, config):
     """
     Trains the model over a specified number of iterations, periodically evaluating it on training and validation data.
 
@@ -66,11 +64,8 @@ def train_model(model, train_data, val_data, optimizer, max_iterations,
     - train_data (Tensor): The training dataset.
     - val_data (Tensor): The validation dataset.
     - optimizer (torch.optim.Optimizer): The optimizer used for training.
-    - max_iterations (int): The total number of training iterations.
-    - eval_interval (int): The frequency of evaluations (number of iterations between each evaluation).
-    - block_size (int): The sequence length (number of tokens) for each input example.
-    - batch_size (int): The number of examples in each training or evaluation batch.
-    - eval_iters (int): The number of evaluation iterations to perform during each evaluation.
+    - config (dict): A configuration dictionary containing `max_iterations`, `eval_interval`, 
+                     `block_size`, `batch_size`, and `eval_iters`.
 
     The function performs training in an iterative loop. After every `eval_interval` iterations, it estimates
     the loss on both the training and validation datasets using the `estimate_loss` function. It also performs 
@@ -78,16 +73,16 @@ def train_model(model, train_data, val_data, optimizer, max_iterations,
     
     The training process continues until `max_iterations` is reached.
     """
-    for iteration in range(max_iterations):
-        if iteration % eval_interval == 0 or iteration == max_iterations - 1:
+    for iteration in range(config['max_iterations']):
+        if iteration % config['eval_interval'] == 0 or iteration == config['max_iterations'] - 1:
             losses = estimate_loss(
-                model, train_data, val_data, eval_iters, block_size, batch_size
+                model, train_data, val_data, config['eval_iters'], config
             )
             print(f"step {iteration}: train loss {losses['train']:.4f}, "
                   f"val loss {losses['val']:.4f}")
 
-        xb, yb = get_batch('train', train_data, block_size, batch_size)
-        logits, loss = model(xb, yb)
+        x_batch, y_batch = get_batch('train', train_data, config['block_size'], config['batch_size'])
+        logits, loss = model(x_batch, y_batch)
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         optimizer.step()
