@@ -18,6 +18,21 @@ N_HEAD = 4
 N_LAYER = 4
 DROPOUT = 0.0
 
+# Configuration
+config = {
+    "batch_size": BATCH_SIZE,
+    "block_size": BLOCK_SIZE,
+    "max_iters": MAX_ITERS,
+    "eval_interval": EVAL_INTERVAL,
+    "learning_rate": LEARNING_RATE,
+    "device": DEVICE,
+    "eval_iters": EVAL_ITERS,
+    "n_embd": N_EMBD,
+    "n_head": N_HEAD,
+    "n_layer": N_LAYER,
+    "dropout": DROPOUT
+}
+
 
 def main():
     """
@@ -62,17 +77,13 @@ def main():
     # Initialize the optimizer
     optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 
-    # Train the model with keyword arguments
+    # Train the model with the config dictionary
     train_model(
         model=model, 
         train_data=train_data, 
         val_data=val_data, 
         optimizer=optimizer,
-        max_iters=MAX_ITERS, 
-        eval_interval=EVAL_INTERVAL, 
-        block_size=BLOCK_SIZE, 
-        batch_size=BATCH_SIZE, 
-        eval_iters=EVAL_ITERS
+        config=config
     )
 
     # Save the trained model
