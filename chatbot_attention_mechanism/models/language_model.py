@@ -1,5 +1,5 @@
 import torch
-from torch import nn  # Use 'from torch import nn' as suggested
+from torch import nn  # Refactored as suggested
 from torch.nn import functional as F
 
 
@@ -169,7 +169,16 @@ class BigramLanguageModel(nn.Module):
     - forward(idx, targets=None): Computes the logits and optionally the loss for the input `idx`.
     - generate(idx, max_new_tokens, block_size): Generates a sequence of new tokens given an input sequence.
     """
-    def __init__(self, vocab_size, n_embd, block_size, n_layer, n_head, dropout):
+    def __init__(self, vocab_size, n_embd, block_size, n_layer, n_head, dropout=0.0):
+        """
+        Args:
+        - vocab_size (int): Size of the vocabulary.
+        - n_embd (int): Embedding dimension.
+        - block_size (int): Number of tokens in the input sequence.
+        - n_layer (int): Number of transformer blocks.
+        - n_head (int): Number of attention heads.
+        - dropout (float, optional): Dropout probability (default is 0.0).
+        """
         super().__init__()
         self.token_embedding_table = nn.Embedding(vocab_size, n_embd)
         self.position_embedding_table = nn.Embedding(block_size, n_embd)
@@ -208,17 +217,17 @@ class BigramLanguageModel(nn.Module):
             loss = F.cross_entropy(logits, targets)
         return logits, loss
 
-    def generate(self, idx, max_new_tokens, block_size):
+    def generate(self, idx, max_new_tokens=100, block_size=16):
         """
         Generates a sequence of tokens from the model.
 
         Args:
         - idx (Tensor): Input tensor of token indices (batch_size, sequence_length).
-        - max_new_tokens (int): Maximum number of new tokens to generate.
-        - block_size (int): The length of the sequence to consider during generation.
+        - max_new_tokens (int, optional): Maximum number of new tokens to generate (default is 100).
+        - block_size (int, optional): Number of tokens in the input sequence (default is 16).
 
         Returns:
-        - idx (Tensor): The extended tensor of token indices after generation.
+        - idx (Tensor): Updated tensor of token indices after generation.
         """
         for _ in range(max_new_tokens):
             idx_cond = idx[:, -block_size:]

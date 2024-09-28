@@ -36,7 +36,6 @@ def load_and_preprocess_data():
     text_combined = ''.join(text['Questions'].astype(str) + text['Answers'].astype(str))
     return text_combined
 
-
 def encode_text(text):
     """
     Encodes a given text into numerical representations using character-level encoding.
@@ -60,8 +59,8 @@ def encode_text(text):
     chars = sorted(list(set(text)))
     
     # Create character-to-index and index-to-character mappings
-    stoi = {ch: i for i, ch in enumerate(chars)}
-    itos = {i: ch for i, ch in enumerate(chars)}
+    stoi = dict(enumerate(chars))  # Refactored to use dict(enumerate(chars))
+    itos = dict(enumerate(chars))
     
     # Encode the text into a list of integers using the stoi mapping
     encoded_text = [stoi[c] for c in text]

@@ -51,16 +51,28 @@ def main():
 
     # Initialize the BigramLanguageModel
     model = BigramLanguageModel(
-        vocab_size, N_EMBD, BLOCK_SIZE, N_LAYER, N_HEAD, DROPOUT
+        vocab_size=vocab_size, 
+        n_embd=N_EMBD, 
+        block_size=BLOCK_SIZE, 
+        n_layer=N_LAYER, 
+        n_head=N_HEAD, 
+        dropout=DROPOUT
     ).to(DEVICE)
 
     # Initialize the optimizer
     optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 
-    # Train the model
+    # Train the model with keyword arguments
     train_model(
-        model, train_data, val_data, optimizer,
-        MAX_ITERS, EVAL_INTERVAL, BLOCK_SIZE, BATCH_SIZE, EVAL_ITERS
+        model=model, 
+        train_data=train_data, 
+        val_data=val_data, 
+        optimizer=optimizer,
+        max_iters=MAX_ITERS, 
+        eval_interval=EVAL_INTERVAL, 
+        block_size=BLOCK_SIZE, 
+        batch_size=BATCH_SIZE, 
+        eval_iters=EVAL_ITERS
     )
 
     # Save the trained model
