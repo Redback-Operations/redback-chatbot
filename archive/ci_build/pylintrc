@@ -1,0 +1,36 @@
+[MESSAGES CONTROL]
+
+# Disable the message, report, category or checker with the given id(s). You
+# can either give multiple identifiers separated by comma (,) or put this
+# option multiple times (only on the command line, not in the configuration
+# file where it should appear only once). You can also use "--disable=all" to
+# disable everything first and then re-enable specific checks. For example, if
+# you want to run only the similarities checker, you can use "--disable=all
+# --enable=similarities". If you want to run only the classes checker, but have
+# no Warning level messages displayed, use "--disable=all --enable=classes
+# --disable=W".
+disable=
+    C0114,  # Missing module docstring
+    C0209,  # Consider using f-string
+    C0301,  # Line too long
+    C0302,  # Too many lines
+    C0303,  # Trailing whitespace
+    C0411,  # Wrong import order
+    R0903,  # Too few public methods in class (useful for data classes)
+    R0913,  # Too many arguments in function
+    R0914,  # Too many local variables
+    R0915,  # Too many statements in function/method
+    W0104,  # Pointless statement
+    W0311,  # Bad indentation
+    W0511,  # TODO/FIXME comments in the code
+    W0611,  # Unused import
+    W0612,  # Unused variable
+    W0613,  # Unused argument
+    E0401,  # Import error
+    F  #
+
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where
+# it should appear only once). See also the "--disable" option for examples.
+enable=c-extension-no-member

@@ -1,0 +1,7 @@
+pymupdf4llm
+sentence-transformers
+qdrant-client
+langchain
+langchain_groq
+langchain-core
+flashrank
