@@ -5,3 +5,5 @@ langchain
 langchain_groq
 langchain-core
 flashrank
+fastapi
+uvicorn
