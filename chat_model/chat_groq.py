@@ -12,7 +12,7 @@ def init_chat_model():
         streaming=True
     )
 
-def generate_response(chat_model, encoder, ranker, user_input, collection_name, client, relevance_threshold=0.8):
+def generate_response(chat_model, encoder, ranker, user_input, collection_name, client, relevance_threshold=0.75):
     # Encode the user input
     query_embedding = encoder.encode([user_input])[0]
     

@@ -68,16 +68,17 @@ project/
 3. Clone the Repository
 4. Reopen in Container
    - VS Code will build the Docker container and open the project inside the container.
-5. Test the processing pipeline in the terminal
-   ```
-   python run_pipeline.py
-   ```
 
 ### Environment Variables
 
 Set the necessary environment variables for the Groq API key:
 ```sh
 export GROQ_API_KEY=your_groq_api_key
+```
+
+Test the processing pipeline in the terminal
+```
+python run_pipeline.py
 ```
 
 ## Usage
