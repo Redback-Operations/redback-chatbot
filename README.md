@@ -76,7 +76,7 @@ Set the necessary environment variables for the Groq API key:
 export GROQ_API_KEY=your_groq_api_key
 ```
 
-Test the processing pipeline in the terminal
+### Test the processing pipeline in the terminal
 ```
 python run_pipeline.py
 ```
