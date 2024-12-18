@@ -3,7 +3,8 @@ from models.language_model import BigramLanguageModel
 from utils.data_loader import load_and_preprocess_data, encode_text
 from training.train_model import train_model
 from chatbot import chatbot_interaction
-
+import os
+import tempfile
 
 # Hyperparameters
 BATCH_SIZE = 4
@@ -17,6 +18,7 @@ N_EMBD = 64
 N_HEAD = 4
 N_LAYER = 4
 DROPOUT = 0.0
+MODEL_PATH = 'bigram_language_model.pth'
 
 # Configuration
 config = {
@@ -33,12 +35,35 @@ config = {
     "dropout": DROPOUT
 }
 
+def safe_save_model(model, filepath):
+    """
+    Safely save the model using atomic operations and proper serialization.
+    """
+    # Create a temporary file in the same directory
+    temp_dir = os.path.dirname(os.path.abspath(filepath))
+    fd, temp_path = tempfile.mkstemp(dir=temp_dir)
+    os.close(fd)
+    
+    try:
+        # Save to temporary file first
+        torch.save(
+            model.state_dict(),
+            temp_path,
+            _use_new_zipfile_serialization=True,
+            pickle_protocol=4
+        )
+        # Atomic rename to final destination
+        os.replace(temp_path, filepath)
+    except Exception as e:
+        # Clean up temp file if something goes wrong
+        if os.path.exists(temp_path):
+            os.unlink(temp_path)
+        raise e
 
 def main():
     """
     The main function to preprocess data, train the BigramLanguageModel, and optionally
     start the chatbot interaction.
-
     Steps:
     1. Loads and preprocesses text data.
     2. Encodes the text into a sequence of integers.
@@ -47,10 +72,6 @@ def main():
     5. Saves the trained model to a file.
     6. Optionally starts an interactive chatbot session where users can ask questions
        and receive generated responses from the model.
-
-    Hyperparameters for the model, optimizer, and training process are defined globally.
-
-    Prompts the user to decide if they want to interact with the chatbot after training.
     """
     # Load and preprocess data
     text = load_and_preprocess_data()
@@ -86,14 +107,18 @@ def main():
         config=config
     )
 
-    # Save the trained model
-    torch.save(model.state_dict(), 'bigram_language_model.pth')
+    # Safely save the trained model
+    try:
+        safe_save_model(model, MODEL_PATH)
+        print(f"Model saved successfully to {MODEL_PATH}")
+    except Exception as e:
+        print(f"Error saving model: {str(e)}")
+        return
 
     # Prompt user to start chatbot interaction
     user_input = input("Do you want to start the chatbot? (y/n): ")
     if user_input.lower() == 'y':
         chatbot_interaction(model, stoi, itos)
-
 
 if __name__ == '__main__':
     main()
