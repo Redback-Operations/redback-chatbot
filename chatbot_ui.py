@@ -1,5 +1,6 @@
 import streamlit as st
-import requests
+# import requests -- replaced with httpx
+import httpx
 
 # Set the API endpoint to localhost (local only)
 API_URL = "http://127.0.0.1:8000/chat"
@@ -15,8 +16,9 @@ if st.button("Get Response"):
     if user_query:
         try:
             # Send the query to the API
-            response = requests.post(API_URL, json={"user_query": user_query})
-            
+            # response = requests.post(API_URL, json={"user_query": user_query})
+            response = httpx.post(API_URL, json={"user_query": user_query})
+
             if response.status_code == 200:
                 # Display the response from the API
                 chatbot_response = response.json().get("response")

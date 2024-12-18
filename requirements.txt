@@ -8,3 +8,4 @@ flashrank
 fastapi
 uvicorn
 streamlit
+httpx
