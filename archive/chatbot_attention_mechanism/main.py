@@ -86,8 +86,8 @@ def main():
         config=config
     )
 
-    # Save the trained model
-    torch.save(model.state_dict(), 'bigram_language_model.pth')
+    # Save the trained model - Commented out for security reasons
+    # torch.save(model.state_dict(), 'bigram_language_model.pth')
 
     # Prompt user to start chatbot interaction
     user_input = input("Do you want to start the chatbot? (y/n): ")
