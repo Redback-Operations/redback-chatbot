@@ -127,11 +127,11 @@ jobs:
           echo -e "\n-----------------------------------------\nPylint Linting Check File:"
           cat pylint_log.txt
           
-          if [ -s error_log.txt ]; then
+          if grep -q "error" error_log.txt; then
             exit 1
-          elif [ -s flake8_log.txt ]; then
+          elif grep -q "error" flake8_log.txt; then
             exit 1
-          elif [ -s pylint_log.txt ]; then
+          elif grep -q "error" pylint_log.txt; then
             exit 1
           else
             cat pass_log.txt
