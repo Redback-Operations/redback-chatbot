@@ -1,6 +1,6 @@
 import streamlit as st
-# import requests -- replaced with httpx
 import httpx
+# requests has been replaced with httpx for security vulnerability
 
 # Set the API endpoint to localhost (local only)
 API_URL = "http://127.0.0.1:8000/chat"
