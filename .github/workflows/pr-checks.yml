@@ -136,4 +136,5 @@ jobs:
           else
             cat pass_log.txt
             echo "No naming errors found!"
+            exit 0
           fi
