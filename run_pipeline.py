@@ -1,4 +1,3 @@
-import os
 from data_processing.pdf_to_markdown import convert_all_pdfs
 from data_processing.text_splitter import split_text_files
 from embedding.sentence_encoder import get_encoder, generate_embeddings
@@ -7,6 +6,12 @@ from chat_model.chat_groq import init_chat_model, generate_response
 from flashrank import Ranker  # Import Ranker
 
 def main():
+    """
+    Main function to test the data processing pipeline.
+    It converts PDFs to Markdown, splits the text into chunks,
+    generates embeddings, initialises the Qdrant client, creates a collection,
+    prepares data for upload, and uploads the data.
+    """
     # Set up paths
     input_folder = 'docs'
     output_folder = 'parsed_docs'
