@@ -53,8 +53,6 @@
 
 # data = pd.concat([data_alz, data_mental], ignore_index=True)
 
-
-
 # # +
 # # data = pd.concat([data_alz, data_mental], ignore_index=True)
 # # -
@@ -379,5 +377,3 @@
     
 #     print("Chatbot:", response)
 # # -
-
-
