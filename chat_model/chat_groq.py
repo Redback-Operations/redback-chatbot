@@ -49,7 +49,7 @@ def generate_response(chat_model, encoder, ranker, user_input, collection_name, 
         prompt_template = PromptTemplate(input_variables=["context", "question"], template=template)
         full_response = chat_model.predict(prompt_template.format(question=user_input, context=context))
     else:
-        TEMPLATE = """Answer the following question
+        template = """Answer the following question
 
         question = {question}
         """
