@@ -1,5 +1,6 @@
 [MASTER]
 ignore=archive
+ignore-patterns=archive/*
 
 [MESSAGES CONTROL]
 
