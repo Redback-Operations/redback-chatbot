@@ -240,17 +240,24 @@ jobs:
       id: check_results
       run: |
         if [ -f security-scan-results.txt ]; then
-          echo "file_exists=true" >> $GITHUB_OUTPUT
+          echo "file_exists=true" >> $GITHUB_ENV
           if grep -q "Detected Vulnerabilities:" security-scan-results.txt; then
-            echo "vulnerabilities_found=true" >> $GITHUB_OUTPUT
+            echo "vulnerabilities_found=true" >> $GITHUB_ENV
           else
-            echo "vulnerabilities_found=false" >> $GITHUB_OUTPUT
+            echo "vulnerabilities_found=false" >> $GITHUB_ENV
           fi
         else
-          echo "file_exists=false" >> $GITHUB_OUTPUT
+          echo "file_exists=false" >> $GITHUB_ENV
           echo "No security scan results file found. The scan may have failed." >> security-scan-results.txt
         fi
+      env:
+        GITHUB_ENV: $GITHUB_ENV
+    
+    - name: Set job status to success if no vulnerabilities found
+      if: steps.check_results.outputs.vulnerabilities_found == 'false'
+      run: echo "No vulnerabilities found. Setting job status to success."
 
+    
     - name: Upload scan results
       uses: actions/upload-artifact@v3
       with:
