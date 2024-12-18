@@ -76,7 +76,7 @@ jobs:
 
       - name: Check for PDF and Word files
         run: |
-          echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | if grep -q -e ".docx" -e ".pdf"; then
+          if echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | grep -q -e ".docx" -e ".pdf"; then
             echo "This PR contains PDF or word (.docx) files, please remove them and try again." >> error_log.txt
           else
             echo "This PR does not contain PDF or word (.docx) files." >> pass_log.txt
