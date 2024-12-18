@@ -137,7 +137,12 @@ jobs:
                                 if isinstance(node.value, ast.Call) and isinstance(node.value.func, ast.Name) and node.value.func.id in ['input', 'request.form.get']:
                                     tainted_vars.add(target.id)
                     elif isinstance(node, ast.Call) and any(isinstance(arg, ast.Name) and arg.id in tainted_vars for arg in node.args):
-                        self.add_vulnerability('Tainted Variable Usage', f"Potentially tainted variable used: {ast.get_source_segment(self.code_lines, node)}", node.lineno, 'HIGH', 'HIGH')
+                        try:
+                            source_segment = ast.get_source_segment(self.code_lines, node)
+                            if source_segment:
+                                self.add_vulnerability('Tainted Variable Usage', f"Potentially tainted variable used: {source_segment}", node.lineno, 'HIGH', 'HIGH')
+                        except IndexError:
+                            logging.error(f"IndexError: list index out of range for node at line {node.lineno}")
 
             def check_ssrf_vulnerabilities(self):
                 for node in ast.walk(self.ast_tree):
