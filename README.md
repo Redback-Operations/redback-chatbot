@@ -1,84 +1,104 @@
-# Redback Chatbot Development Project
+# Lachesis Chatbot Development Project
 
-Welcome to the **Redback Chatbot Development Project**, part of the larger **Redback Senior Project**. This project is dedicated to harnessing the potential of wearable technology to significantly enhance the quality of life for the elderly. By leveraging advanced data analytics, innovative web platforms, and sophisticated mobile app development tools, the Redback Senior Project aims to create a comprehensive support system for seniors.
+Welcome to the **Lachesis Chatbot Development Project**, part of the larger **Redback Senior Project (Lachesis)** under Redback Operations (Capstone project company within the School of Information Technology at Deakin University). This project is dedicated to harnessing the potential of wearable technology to significantly enhance the quality of life for the elderly. By leveraging advanced data analytics, innovative web platforms, and sophisticated mobile app development tools, the Redback Senior Project aims to create a comprehensive support system for seniors.
 
-This repository specifically focuses on the development of an AI-powered chatbot that complements the wearable technology, providing personalised interactions across domains such as mental health, medical information, and natural language processing (NLP). The chatbot is split into two major parts:
-
-1. **Model Development** – The core machine learning model, including natural language processing techniques and training datasets.
-2. **RAG Implementation** – Retrieval-Augmented Generation (RAG) for real-time data retrieval and contextual response generation from a curated knowledge base.
+This repository specifically focuses on the development of an AI-powered chatbot that complements the wearable technology, providing personalised interactions across medical and personal health domains.
 
 ## Introduction
 
-The goal of the Redback Chatbot is to develop an intelligent, adaptive chatbot that goes beyond traditional transformer models. By integrating **LLMs** and **RAG** architecture, the chatbot retrieves and generates responses from a specialised knowledge base to assist elderly users, enhancing their interactions with the Redback wearable technology.
+The Lachesis Chatbot is designed to assist elderly users by providing them with reliable information and support through natural language interactions. The chatbot leverages advanced machine learning models and a retrieval-augmented generation (RAG) architecture to deliver accurate and contextually relevant responses.
 
 ## Features
 
-- **Advanced Tokenisation:** Utilises subword tokenisation (BPE, WordPiece) for more accurate text representation.
-- **Vector Embedding:** Leverages Word2Vec, GloVe, and fastText to generate meaningful semantic embeddings.
-- **Attention Mechanism:** Ensures focused, high-quality responses by attending to key parts of the input data.
-- **Iterative Refinement:** Constantly refines and optimises performance to meet the evolving needs of the elderly.
-- **RAG Architecture:** Combines document retrieval with generation models for contextually relevant, real-time responses.
-- **LLM Integration:** Allows for dynamic, personalised, and context-aware conversations.
+- **LLM Integration**: Integrates large language models (LLMs) for dynamic, personalised, and context-aware conversations.
+- **Vector Embedding**: Utilises `SentenceTransformer` for generating meaningful semantic embeddings, ensuring accurate text representation.
+- **RAG Architecture**: Combines document retrieval with generation models for contextually relevant, real-time responses.
+- **Data Processing Pipeline**: Includes scripts for converting PDFs to Markdown, splitting text, generating embeddings, and uploading data to Qdrant.
+- **User-Friendly Interface**: Provides an easy-to-use interface for users through a Streamlit-based frontend.
 
 ## Project Structure
 
-The repository is divided into two parts, reflecting the two main components of the chatbot:
-
-1. **Model Development:**
-   - Core implementation of the chatbot’s machine learning model.
-   - Includes the training and integration of large language models.
-   - **Chatbot_datasets/**: Datasets used for training the model, including:
-     - `Medical_train.csv`, `Mental_Health_FAQ.csv`, etc.
-   - **Chatbot_model/**: Main implementation of the chatbot model.
-     - `chat.py`
-
-2. **RAG Implementation:**
-   - Focuses on implementing Retrieval-Augmented Generation to enhance the chatbot’s contextual understanding.
-   - **rag/**: Implementation of the RAG architecture
-
-Other key files include:
-- **CODEOWNERS**: Designates code ownership.
-- **LICENSE**: Licensing information.
+```
+project/
+│
+├── data_processing/
+│   ├── __init__.py
+│   ├── pdf_to_markdown.py
+│   ├── text_splitter.py
+│   └── utils.py
+│
+├── embedding/
+│   ├── __init__.py
+│   ├── sentence_encoder.py
+│
+├── vector_db/
+│   ├── __init__.py
+│   ├── qdrant_client.py
+│
+├── chat_model/
+│   ├── __init__.py
+│   ├── chat_groq.py
+│
+├── run_pipeline.py      # Script to test the processing pipeline          
+├── chatbot_ui.py        # Streamlit application for the chatbot UI
+├── chatbot_api.py       # FastAPI server for the chatbot
+└── requirements.txt     # Project dependencies
+```
 
 ## Setup Instructions
 
-To set up the project locally, follow these steps:
+### Prerequisites
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/redback-chatbot.git
-   ```
-### Part 1: Model Development
+- Docker
+- Visual Studio Code (VS Code) with the Dev Containers extension
 
-(Additional usage instructions to be added)
+### Step-by-Step Setup Using Docker
 
-### Part 2: RAG Implementation
+1. Install Docker Desktop
+2. Enable WSL 2
+3. Start Docker Desktop
+4. Verify Docker Installation
+6. Build the Docker Image
+7. Run the Docker Container locally
 
-2. **Run Jupyter Notebook:**
-   Launch Jupyter Notebook in the `rag/` directory:
-   ```bash
-   jupyter notebook
-   ```
-   Open `poc_e2e.ipynb` from the Jupyter interface.
+### Step-by-Step Setup Using Dev Containers in VS Code
 
-3. **Follow Instructions in the Notebook:**
-   The notebook contains all the instructions needed to run the end-to-end process including environment set-up and installing dependencies provided in `rag/requirements.txt`.
+1. Install Visual Studio Code
+2. Install the Dev Containers Extension
+3. Clone the Repository
+4. Reopen in Container
+   - VS Code will build the Docker container and open the project inside the container.
+
+### Environment Variables
+
+Set the necessary environment variables for the Groq API key:
+```sh
+export GROQ_API_KEY=your_groq_api_key
+```
+
+### Test the processing pipeline in the terminal
+```
+python run_pipeline.py
+```
 
 ## Usage
 
-### Part 1: Model Development
+1. Running the FastAPI Server:
+   - Convert PDFs to Markdown, split text, generate embeddings, and upload data to Qdrant
+   - Start the FastAPI server to handle API requests
+   ```
+   python chatbot_api.py
+   ```
 
-(Additional usage instructions to be added)
+2. Running the Streamlit Application:
+   - Using a different terminal, start the Streamlit application to provide a user interface for the chatbot
+   ```
+   streamlit run chatbot_ui.py --server.address 127.0.0.1
+   ```
 
-### Part 2: RAG Implementation
-
-RAG architecture is employed to enhance the chatbot’s ability to retrieve and generate contextually accurate responses. 
-
-1. **Convert PDF Files to Markdown**: Place your PDF files in the `docs` folder. The notebook will automatically convert them to Markdown format and save them in the `parsed_docs` folder.
-2. **Text Processing**: The notebook splits the converted Markdown files into smaller text chunks, which are then encoded into vector embeddings using the `SentenceTransformer` model.
-3. **Store Embeddings in Qdrant**: The text embeddings are stored in a Qdrant vector database, enabling efficient semantic search.
-4. **Search and Retrieve**: Use the stored embeddings to perform searches. The results are initially ranked based on relevance and can be further refined using a ranking model.
-5. **Generate Responses**: Use the `ChatGroq` model to generate answers based on the retrieved context and user queries.
+3. Interact with the Chatbot:
+   - Open your web browser and go to http://localhost:8501
+   - Enter your query in the input box and click "Get Response" to receive a response from the chatbot.
 
 ---
 

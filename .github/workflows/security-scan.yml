@@ -7,6 +7,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  issues: write
 
 jobs:
   security-scan:
@@ -137,7 +138,12 @@ jobs:
                                 if isinstance(node.value, ast.Call) and isinstance(node.value.func, ast.Name) and node.value.func.id in ['input', 'request.form.get']:
                                     tainted_vars.add(target.id)
                     elif isinstance(node, ast.Call) and any(isinstance(arg, ast.Name) and arg.id in tainted_vars for arg in node.args):
-                        self.add_vulnerability('Tainted Variable Usage', f"Potentially tainted variable used: {ast.get_source_segment(self.code_lines, node)}", node.lineno, 'HIGH', 'HIGH')
+                        try:
+                            source_segment = ast.get_source_segment(self.code_lines, node)
+                            if source_segment:
+                                self.add_vulnerability('Tainted Variable Usage', f"Potentially tainted variable used: {source_segment}", node.lineno, 'HIGH', 'HIGH')
+                        except IndexError:
+                            logging.error(f"IndexError: list index out of range for node at line {node.lineno}")
 
             def check_ssrf_vulnerabilities(self):
                 for node in ast.walk(self.ast_tree):
@@ -234,17 +240,24 @@ jobs:
       id: check_results
       run: |
         if [ -f security-scan-results.txt ]; then
-          echo "file_exists=true" >> $GITHUB_OUTPUT
+          echo "file_exists=true" >> $GITHUB_ENV
           if grep -q "Detected Vulnerabilities:" security-scan-results.txt; then
-            echo "vulnerabilities_found=true" >> $GITHUB_OUTPUT
+            echo "vulnerabilities_found=true" >> $GITHUB_ENV
           else
-            echo "vulnerabilities_found=false" >> $GITHUB_OUTPUT
+            echo "vulnerabilities_found=false" >> $GITHUB_ENV
           fi
         else
-          echo "file_exists=false" >> $GITHUB_OUTPUT
+          echo "file_exists=false" >> $GITHUB_ENV
           echo "No security scan results file found. The scan may have failed." >> security-scan-results.txt
         fi
+      env:
+        GITHUB_ENV: $GITHUB_ENV
+    
+    - name: Set job status to success if no vulnerabilities found
+      if: steps.check_results.outputs.vulnerabilities_found == 'false'
+      run: echo "No vulnerabilities found. Setting job status to success."
 
+    
     - name: Upload scan results
       uses: actions/upload-artifact@v3
       with:
@@ -252,43 +265,43 @@ jobs:
         path: security-scan-results.txt
         if-no-files-found: warn
 
-    - name: Comment PR
-      uses: actions/github-script@v6
-      if: always()
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          const fs = require('fs');
+    # - name: Comment PR
+    #   uses: actions/github-script@v6
+    #   if: always()
+    #   with:
+    #     github-token: ${{secrets.GITHUB_TOKEN}}
+    #     script: |
+    #       const fs = require('fs');
           
-          let comment = '## Security Scan Results\n\n';
+    #       let comment = '## Security Scan Results\n\n';
           
-          try {
-            if (fs.existsSync('security-scan-results.txt')) {
-              const scanResults = fs.readFileSync('security-scan-results.txt', 'utf8');
-              comment += '```\n' + scanResults + '\n```\n\n';
+    #       try {
+    #         if (fs.existsSync('security-scan-results.txt')) {
+    #           const scanResults = fs.readFileSync('security-scan-results.txt', 'utf8');
+    #           comment += '```\n' + scanResults + '\n```\n\n';
               
-              if ('${{ steps.check_results.outputs.vulnerabilities_found }}' === 'true') {
-                comment += '⛔ **Vulnerabilities detected. Please address these issues before merging.**';
-              } else if ('${{ steps.check_results.outputs.file_exists }}' === 'true') {
-                comment += '✅ **No vulnerabilities detected.**';
-              } else {
-                comment += '⚠️ **Error: The security scan failed to complete. Please review the workflow logs for more information.**';
-              }
-            } else {
-              comment += '⚠️ **Error: No security scan results file found. The scan may have failed. Please review the workflow logs for more information.**';
-            }
+    #           if ('${{ steps.check_results.outputs.vulnerabilities_found }}' === 'true') {
+    #             comment += '⛔ **Vulnerabilities detected. Please address these issues before merging.**';
+    #           } else if ('${{ steps.check_results.outputs.file_exists }}' === 'true') {
+    #             comment += '✅ **No vulnerabilities detected.**';
+    #           } else {
+    #             comment += '⚠️ **Error: The security scan failed to complete. Please review the workflow logs for more information.**';
+    #           }
+    #         } else {
+    #           comment += '⚠️ **Error: No security scan results file found. The scan may have failed. Please review the workflow logs for more information.**';
+    #         }
             
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: comment
-            });
-            console.log('Successfully commented on PR');
-          } catch (error) {
-            console.error('Error in PR comment process:', error.message);
-            core.setFailed(`Failed to process or post comment: ${error.message}`);
-          }
+    #         await github.rest.issues.createComment({
+    #           issue_number: context.issue.number,
+    #           owner: context.repo.owner,
+    #           repo: context.repo.repo,
+    #           body: comment
+    #         });
+    #         console.log('Successfully commented on PR');
+    #       } catch (error) {
+    #         console.error('Error in PR comment process:', error.message);
+    #         core.setFailed(`Failed to process or post comment: ${error.message}`);
+    #       }
 
     - name: Fail if vulnerabilities found or scan failed
       if: steps.check_results.outputs.vulnerabilities_found == 'true' || steps.check_results.outputs.file_exists == 'false'

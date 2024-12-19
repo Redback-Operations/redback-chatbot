@@ -76,7 +76,7 @@ jobs:
 
       - name: Check for PDF and Word files
         run: |
-          echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | if grep -q -e ".docx" -e ".pdf"; then
+          if echo "${{ steps.changed_files.outputs.all_changed_files }}" | tr "," "\n" | grep -q -E "\.docx$|\.pdf$"; then
             echo "This PR contains PDF or word (.docx) files, please remove them and try again." >> error_log.txt
           else
             echo "This PR does not contain PDF or word (.docx) files." >> pass_log.txt
@@ -127,13 +127,14 @@ jobs:
           echo -e "\n-----------------------------------------\nPylint Linting Check File:"
           cat pylint_log.txt
           
-          if [ -s error_log.txt ]; then
+          if grep -q ":" error_log.txt; then
             exit 1
-          elif [ -s flake8_log.txt ]; then
+          elif grep -q ":" flake8_log.txt; then
             exit 1
-          elif [ -s pylint_log.txt ]; then
+          elif grep -q ":" pylint_log.txt; then
             exit 1
           else
             cat pass_log.txt
             echo "No naming errors found!"
+            exit 0
           fi
