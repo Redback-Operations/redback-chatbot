@@ -20,3 +20,10 @@ Desktop.ini
 
 # Linux files
 *~
+
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Log files
+*.log

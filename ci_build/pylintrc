@@ -1,3 +1,7 @@
+[MASTER]
+ignore=archive
+ignore-patterns=archive/*
+
 [MESSAGES CONTROL]
 
 # Disable the message, report, category or checker with the given id(s). You
@@ -20,12 +24,14 @@ disable=
     R0913,  # Too many arguments in function
     R0914,  # Too many local variables
     R0915,  # Too many statements in function/method
+    R0917,  # Too many positional arguments 
     W0104,  # Pointless statement
     W0311,  # Bad indentation
     W0511,  # TODO/FIXME comments in the code
     W0611,  # Unused import
     W0612,  # Unused variable
     W0613,  # Unused argument
+    W0718,  # Catching too general exception
     E0401,  # Import error
     F  #
 
