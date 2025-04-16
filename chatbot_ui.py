@@ -1,6 +1,8 @@
 import streamlit as st
 import httpx
 
+# Ensure you are using Streamlit v1.25 or higher otherwise it would cause a fail due to version issue
+
 # Set the API endpoint
 API_URL = "http://127.0.0.1:8000/chat"
 
@@ -11,40 +13,40 @@ st.title("Lachesis Chatbot")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# Input
-user_query = st.text_input("Enter your query:")
+# Display chat history using st.chat_message()
+for sender, message in st.session_state.chat_history:
+    with st.chat_message("user" if sender == "You" else "assistant"):
+        st.markdown(message)
 
-# Button to clear chat
-if st.button("Clear Chat"):
-    st.session_state.chat_history = []
-    st.success("Chat history cleared.")
+# Input container at the bottom
+if user_query := st.chat_input("Ask something..."):
+    with st.chat_message("user"):
+        st.markdown(user_query)
+    try:
+        with st.spinner("Thinking..."):
+            response = httpx.post(API_URL, json={"user_query": user_query}, timeout=10)
 
-# Button to send query
-if st.button("Get Response"):
-    if user_query.strip():
-        try:
-            with st.spinner("Waiting for response..."):
-                response = httpx.post(API_URL, json={"user_query": user_query}, timeout=10)
+        if response.status_code == 200:
+            chatbot_response = response.json().get("response", "No response received.")
+        else:
+            chatbot_response = f"Error: Status code {response.status_code}"
 
-            if response.status_code == 200:
-                data = response.json()
-                chatbot_response = data.get("response", "No response received.")
+    except httpx.ConnectError:
+        chatbot_response = "Connection error: Unable to connect to the chatbot API."
+    except httpx.TimeoutException:
+        chatbot_response = "Timeout: The chatbot server took too long to respond."
+    except Exception as e:
+        chatbot_response = f"Unexpected error: {e}"
 
-                # Save to chat history
-                st.session_state.chat_history.append(("You", user_query))
-                st.session_state.chat_history.append(("Chatbot", chatbot_response))
-            else:
-                st.error(f"Server returned status code {response.status_code}")
+    with st.chat_message("assistant"):
+        st.markdown(chatbot_response)
 
-        except httpx.ConnectError:
-            st.error("Connection error: Unable to connect to the chatbot API.")
-        except httpx.TimeoutException:
-            st.error("Timeout: The chatbot server took too long to respond.")
-        except Exception as e:
-            st.error(f"Unexpected error: {e}")
-    else:
-        st.warning("Please enter a valid query.")
+    # Store messages
+    st.session_state.chat_history.append(("You", user_query))
+    st.session_state.chat_history.append(("Chatbot", chatbot_response))
 
-# Display chat history
-for sender, msg in st.session_state.chat_history:
-    st.markdown(f"**{sender}**: {msg}")
+# Add a button in sidebar to clear chat
+with st.sidebar:
+    if st.button("Clear Chat"):
+        st.session_state.chat_history = []
+        st.success("Chat history cleared.")
