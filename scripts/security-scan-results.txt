@@ -1,0 +1,7 @@
+Advanced Vulnerability Scan Results for .\scanner_updated.py:
+Total lines of code: 199
+
+Detected Vulnerabilities:
+No high-confidence vulnerabilities detected.
+
+
