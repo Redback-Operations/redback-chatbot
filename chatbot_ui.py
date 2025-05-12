@@ -1,31 +1,52 @@
 import streamlit as st
 import httpx
-# requests has been replaced with httpx for security vulnerability
 
-# Set the API endpoint to localhost (local only)
+# Ensure you are using Streamlit v1.25 or higher otherwise it would cause a fail due to version issue
+
+# Set the API endpoint
 API_URL = "http://127.0.0.1:8000/chat"
 
-# Streamlit application
+# Title
 st.title("Lachesis Chatbot")
 
-# Input for user query
-user_query = st.text_input("Enter your query:")
+# Initialize chat history
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-# Button to submit the query
-if st.button("Get Response"):
-    if user_query:
-        try:
-            # Send the query to the API
-            # response = requests.post(API_URL, json={"user_query": user_query})
-            response = httpx.post(API_URL, json={"user_query": user_query})
+# Display chat history using st.chat_message()
+for sender, message in st.session_state.chat_history:
+    with st.chat_message("user" if sender == "You" else "assistant"):
+        st.markdown(message)
 
-            if response.status_code == 200:
-                # Display the response from the API
-                chatbot_response = response.json().get("response")
-                st.write(f"Chatbot: {chatbot_response}")
-            else:
-                st.write("Error: Unable to get response from the chatbot.")
-        except Exception as e:
-            st.write(f"Error: {e}")
-    else:
-        st.write("Please enter a query.")
+# Input container at the bottom
+if user_query := st.chat_input("Ask something..."):
+    with st.chat_message("user"):
+        st.markdown(user_query)
+    try:
+        with st.spinner("Thinking..."):
+            response = httpx.post(API_URL, json={"user_query": user_query}, timeout=10)
+
+        if response.status_code == 200:
+            chatbot_response = response.json().get("response", "No response received.")
+        else:
+            chatbot_response = f"Error: Status code {response.status_code}"
+
+    except httpx.ConnectError:
+        chatbot_response = "Connection error: Unable to connect to the chatbot API."
+    except httpx.TimeoutException:
+        chatbot_response = "Timeout: The chatbot server took too long to respond."
+    except Exception as e:
+        chatbot_response = f"Unexpected error: {e}"
+
+    with st.chat_message("assistant"):
+        st.markdown(chatbot_response)
+
+    # Store messages
+    st.session_state.chat_history.append(("You", user_query))
+    st.session_state.chat_history.append(("Chatbot", chatbot_response))
+
+# Add a button in sidebar to clear chat
+with st.sidebar:
+    if st.button("Clear Chat"):
+        st.session_state.chat_history = []
+        st.success("Chat history cleared.")
