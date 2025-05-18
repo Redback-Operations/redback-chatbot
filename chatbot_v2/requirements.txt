@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+streamlit
+httpx
+sentence-transformers
+langchain
+langchain-groq
+pymupdf4llm
+qdrant-client
+flashrank
